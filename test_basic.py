@@ -1,11 +1,11 @@
 """Basic test to verify SDK works."""
 
-from verity import VerityClient, AuthenticationError
+from backwork import BackworkClient, AuthenticationError
 
 def test_sdk():
     # Test with a placeholder key - replace with your real key
-    api_key = "vrt_live_h2V4x8pL6JFHuX3y"  # This key may not be active
-    client = VerityClient(api_key)
+    api_key = "bwk_live_h2V4x8pL6JFHuX3y"  # This key may not be active
+    client = BackworkClient(api_key)
     
     # Test health check (no auth required)
     try:
@@ -23,7 +23,7 @@ def test_sdk():
         print(f"✓ Code lookup: {result['data']['description']}")
     except AuthenticationError as e:
         print(f"⚠ Code lookup requires valid API key: {e.message}")
-        print("  Note: Get your API key from https://verity.backworkai.com/dashboard")
+        print("  Note: Get your API key from https://backworkhealth.com/dashboard")
     except Exception as e:
         print(f"✗ Code lookup failed: {e}")
     

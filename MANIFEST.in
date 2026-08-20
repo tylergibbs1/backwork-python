@@ -1,3 +1,3 @@
 include README.md
-recursive-include src/verity py.typed
+recursive-include src/backwork py.typed
 
