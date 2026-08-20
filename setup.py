@@ -4,15 +4,15 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="verity-api",
+    name="backwork-api",
     version="1.0.0",
-    author="Verity",
-    author_email="support@verity.backworkai.com",
-    description="Python SDK for the Verity API - Medicare coverage policies and prior authorization",
+    author="Backwork",
+    author_email="support@backworkhealth.com",
+    description="Python SDK for the Backwork API - Medicare coverage policies and prior authorization",
     license="MIT",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/backworkai/verity-python",
+    url="https://github.com/tylergibbs1/backwork-python",
     packages=find_packages(where="src"),
     package_dir={"": "src"},
     classifiers=[
@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3.13",
     ],
     python_requires=">=3.8",
-    package_data={"verity": ["py.typed"]},
+    package_data={"backwork": ["py.typed"]},
     install_requires=[
         "httpx>=0.24.0",
         "typing-extensions>=4.0.0",

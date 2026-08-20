@@ -49,7 +49,7 @@ jobs:
 
       - name: Verify wheel install
         run: |
-          python -m venv /tmp/verity-python-wheel
-          /tmp/verity-python-wheel/bin/python -m pip install dist/*.whl
-          /tmp/verity-python-wheel/bin/python -c "import verity; print(verity.__version__)"
+          python -m venv /tmp/backwork-python-wheel
+          /tmp/backwork-python-wheel/bin/python -m pip install dist/*.whl
+          /tmp/backwork-python-wheel/bin/python -c "import backwork; print(backwork.__version__)"
 

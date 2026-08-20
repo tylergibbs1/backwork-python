@@ -1,4 +1,4 @@
-"""Verity API Client."""
+"""Backwork API Client."""
 
 from typing import Any, Dict, List, Optional, Union
 import httpx
@@ -8,20 +8,20 @@ from .exceptions import (
     NotFoundError,
     RateLimitError,
     ValidationError,
-    VerityError,
+    BackworkError,
 )
 
 
-class VerityClient:
-    """Client for interacting with the Verity API.
+class BackworkClient:
+    """Client for interacting with the Backwork API.
     
     Args:
-        api_key: Your Verity API key (vrt_live_* or vrt_test_*)
+        api_key: Your Backwork API key (bwk_live_* or bwk_test_*)
         base_url: Base URL for the API (default: production)
         timeout: Request timeout in seconds
     
     Example:
-        >>> client = VerityClient("vrt_live_abc123")
+        >>> client = BackworkClient("bwk_live_abc123")
         >>> result = client.lookup_code("76942")
         >>> print(result["data"]["description"])
     """
@@ -29,7 +29,7 @@ class VerityClient:
     def __init__(
         self,
         api_key: str,
-        base_url: str = "https://verity.backworkai.com/api/v1",
+        base_url: str = "https://backworkhealth.com/api/v1",
         timeout: float = 30.0,
     ):
         if not api_key:
@@ -42,7 +42,7 @@ class VerityClient:
         self._client = httpx.Client(
             headers={
                 "Authorization": f"Bearer {api_key}",
-                "User-Agent": "verity-api-python/1.0.0",
+                "User-Agent": "backwork-api-python/1.0.0",
             },
             timeout=timeout,
         )
@@ -113,10 +113,10 @@ class VerityClient:
             elif response.status_code == 400:
                 raise ValidationError(message, code=code, hint=hint, details=details)
             else:
-                raise VerityError(message, code=code, hint=hint, details=details)
+                raise BackworkError(message, code=code, hint=hint, details=details)
                 
         except httpx.HTTPError as e:
-            raise VerityError(f"HTTP error: {str(e)}")
+            raise BackworkError(f"HTTP error: {str(e)}")
 
     # Health Check
     def health(self) -> Dict[str, Any]:
@@ -701,7 +701,7 @@ class VerityClient:
 
         Example:
             >>> webhook = client.create_webhook(
-            ...     url="https://example.com/webhooks/verity",
+            ...     url="https://example.com/webhooks/backwork",
             ...     events=["policy.updated", "policy.created"]
             ... )
             >>> print(webhook["data"]["id"])
@@ -813,3 +813,9 @@ class VerityClient:
         """Search commercial pharmacy-benefit formulary evidence."""
         params = {"q": q, "payer": payer, "limit": limit}
         return self._request("GET", "/drugs/formulary", params=params)
+
+
+# Pre-rename alias. Code written against the Verity SDK constructs VerityClient
+# directly, so keep this importable until those callers move to BackworkClient.
+# Safe to delete in the first major version after the rename ships.
+VerityClient = BackworkClient
