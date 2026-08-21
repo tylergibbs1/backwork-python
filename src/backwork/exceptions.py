@@ -53,9 +53,3 @@ class RateLimitError(BackworkError):
         self.limit = limit
         self.remaining = remaining
         self.reset = reset
-
-
-# Pre-rename alias. Existing `except VerityError:` blocks must keep catching the
-# base error; this is the same class, not a subclass, so isinstance still holds.
-# Safe to delete in the first major version after the rename ships.
-VerityError = BackworkError
