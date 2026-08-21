@@ -813,9 +813,3 @@ class BackworkClient:
         """Search commercial pharmacy-benefit formulary evidence."""
         params = {"q": q, "payer": payer, "limit": limit}
         return self._request("GET", "/drugs/formulary", params=params)
-
-
-# Pre-rename alias. Code written against the Verity SDK constructs VerityClient
-# directly, so keep this importable until those callers move to BackworkClient.
-# Safe to delete in the first major version after the rename ships.
-VerityClient = BackworkClient

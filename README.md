@@ -4,39 +4,11 @@ Official Python client for the [Backwork API](https://backworkhealth.com): Medic
 
 ## Installation
 
-This SDK is being republished as `backwork-api`. That name is not on PyPI yet, and
-neither is the old `verity-api` name, so `pip install` from PyPI does not work for
-either one right now. Install from the repository:
-
-```bash
-pip install git+https://github.com/tylergibbs1/verity-python.git
-```
-
-That is the repository name that works today. It becomes
-`https://github.com/tylergibbs1/backwork-python.git` once the repository is renamed.
-
-After the first PyPI release, install it directly:
-
 ```bash
 pip install backwork-api
 ```
 
 Requires Python 3.8 or newer.
-
-## Migrating from the Verity SDK
-
-The package now imports as `backwork` and the client is `BackworkClient`:
-
-```python
-from backwork import BackworkClient
-```
-
-`VerityClient` and `VerityError` are still exported from `backwork` as aliases of
-`BackworkClient` and `BackworkError`, so existing `except VerityError:` blocks keep
-working. Import path `verity` is gone: change `from verity import ...` to
-`from backwork import ...`.
-
-API keys issued as `vrt_live_*` still work. New keys are issued as `bwk_live_*`.
 
 ## Quick Start
 
@@ -182,12 +154,10 @@ PYTHONPATH=src python -m pytest
 
 The package publishes to PyPI as `backwork-api` and imports as `backwork`.
 
-1. Rename the GitHub repository from `verity-python` to `backwork-python`. The
-   project URLs here already point at the new name.
-2. Configure PyPI Trusted Publishing for `tylergibbs1/backwork-python`, workflow `publish.yml`, environment `pypi`, project `backwork-api`.
-3. Update `setup.py` and `src/backwork/__init__.py` to the new version.
-4. Push a matching tag, for example `v1.0.0`.
-5. The publish workflow builds, checks, and uploads the distributions to PyPI via OIDC.
+1. Configure PyPI Trusted Publishing for `tylergibbs1/backwork-python`, workflow `publish.yml`, environment `pypi`, project `backwork-api`.
+2. Update `setup.py` and `src/backwork/__init__.py` to the new version.
+3. Push a matching tag, for example `v2.0.0`.
+4. The publish workflow builds, checks, and uploads the distributions to PyPI via OIDC.
 
 ## Support
 
